@@ -1,0 +1,194 @@
+# ---------------------------------------------------------
+# Dependencies
+# ---------------------------------------------------------
+/node_modules/
+/.pnp
+.pnp.js
+.pnp.cjs
+.pnp.loader.mjs
+
+# ---------------------------------------------------------
+# Angular / build outputs
+# ---------------------------------------------------------
+/.angular/
+/.angular/cache/
+/dist/
+/tmp/
+/temp/
+/out-tsc/
+/build/
+/browser/
+/server/
+
+# ---------------------------------------------------------
+# Coverage / test outputs
+# ---------------------------------------------------------
+/coverage/
+/.nyc_output/
+/test-results/
+/playwright-report/
+/reports/
+/junit.xml
+
+# ---------------------------------------------------------
+# Logs
+# ---------------------------------------------------------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---------------------------------------------------------
+# Runtime / PID files
+# ---------------------------------------------------------
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ---------------------------------------------------------
+# Cache files
+# ---------------------------------------------------------
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.sass-cache/
+.rpt2_cache/
+.rts2_cache_*/
+.rollup.cache/
+webpack-stats.json
+
+# ---------------------------------------------------------
+# TypeScript
+# ---------------------------------------------------------
+*.tsbuildinfo
+
+# ---------------------------------------------------------
+# Environment files / secrets
+# Keep only example/template files in the repo
+# ---------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.template
+!.env.sample
+
+# Optional local Angular environment variants
+src/environments/*.local.ts
+src/environments/environment.*.local.ts
+
+# ---------------------------------------------------------
+# Package manager artifacts
+# Keep lockfiles tracked in most team projects
+# ---------------------------------------------------------
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# ---------------------------------------------------------
+# IDE / Editors
+# ---------------------------------------------------------
+
+# JetBrains
+.idea/
+*.iml
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# VS Code local-only files
+.vscode/*.code-snippets
+.history/
+
+# Fleet
+.fleet/
+
+# Visual Studio
+.vs/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ---------------------------------------------------------
+# OS-generated files
+# ---------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------------------------------------------------------
+# Temporary / backup files
+# ---------------------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+
+# ---------------------------------------------------------
+# Local databases / misc
+# ---------------------------------------------------------
+*.sqlite
+*.sqlite3
+
+# ---------------------------------------------------------
+# Firebase / cloud / deployment local files
+# ---------------------------------------------------------
+.firebase/
+.vercel/
+.netlify/
+.serverless/
+.aws-sam/
+
+# ---------------------------------------------------------
+# Storybook
+# ---------------------------------------------------------
+storybook-static/
+
+# ---------------------------------------------------------
+# Cypress / Playwright artifacts
+# ---------------------------------------------------------
+cypress/videos/
+cypress/screenshots/
+playwright/.cache/
+
+# ---------------------------------------------------------
+# Angular ESLint / tooling / analyzers
+# ---------------------------------------------------------
+.angular-eslint/
+.stats.json
+
+# ---------------------------------------------------------
+# Misc generated assets
+# ---------------------------------------------------------
+*.tgz
+
+# ---------------------------------------------------------
+# Uncomment if your project generates these locally
+# ---------------------------------------------------------
+# /.npm/
+# /.pnpm-store/
+# /.yarn/cache/
+# /.yarn/unplugged/
+# /.yarn/build-state.yml
+# /.yarn/install-state.gz
