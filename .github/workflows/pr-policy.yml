@@ -1,0 +1,23 @@
+name: PR Policy
+
+on:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
+
+permissions:
+    contents: read
+
+jobs:
+    validate-pr:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Validate branch naming
+              env:
+                  BRANCH: ${{ github.head_ref }}
+              run: |
+                  BRANCH_REGEX='^(feature|fix|devops|docs|release|chore)/[A-Za-z0-9._-]+$'
+                  if [[ ! "$BRANCH" =~ $BRANCH_REGEX ]]; then
+                    echo "Branch invalide: $BRANCH"
+                    echo "Format attendu: <type>/<description>"
+                    exit 1
+                  fi
