@@ -15,7 +15,7 @@ jobs:
               env:
                   BRANCH: ${{ github.head_ref }}
               run: |
-                  BRANCH_REGEX='^(feature|fix|devops|docs|release|chore)/[A-Za-z0-9._-]+$'
+                  BRANCH_REGEX='^([Ff]eature|[Ff]ix|[Dd]evops|[Dd]ocs|[Rr]elease|[Cc]hore)/[A-Za-z0-9._-]+$'
                   if [[ ! "$BRANCH" =~ $BRANCH_REGEX ]]; then
                     echo "Branch invalide: $BRANCH"
                     echo "Format attendu: <type>/<description>"
