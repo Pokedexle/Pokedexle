@@ -11,7 +11,6 @@
 # Angular / build outputs
 # ---------------------------------------------------------
 /.angular/
-/.angular/cache/
 /dist/
 /tmp/
 /temp/
@@ -19,6 +18,7 @@
 /build/
 /browser/
 /server/
+/bazel-out/
 
 # ---------------------------------------------------------
 # Coverage / test outputs
@@ -29,6 +29,11 @@
 /playwright-report/
 /reports/
 /junit.xml
+cypress/videos/
+cypress/screenshots/
+playwright/.cache/
+storybook-static/
+__screenshots__/
 
 # ---------------------------------------------------------
 # Logs
@@ -40,6 +45,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+testem.log
+/libpeerconnection.log
+/connect.lock
 
 # ---------------------------------------------------------
 # Runtime / PID files
@@ -61,15 +69,17 @@ pids
 .rts2_cache_*/
 .rollup.cache/
 webpack-stats.json
+.angular-eslint/
+.stats.json
 
 # ---------------------------------------------------------
 # TypeScript
 # ---------------------------------------------------------
 *.tsbuildinfo
+/typings
 
 # ---------------------------------------------------------
 # Environment files / secrets
-# Keep only example/template files in the repo
 # ---------------------------------------------------------
 .env
 .env.*
@@ -77,49 +87,44 @@ webpack-stats.json
 !.env.template
 !.env.sample
 
-# Optional local Angular environment variants
 src/environments/*.local.ts
 src/environments/environment.*.local.ts
 
 # ---------------------------------------------------------
-# Package manager artifacts
-# Keep lockfiles tracked in most team projects
+# Local package manager stores
 # ---------------------------------------------------------
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
+/.npm/
+/.pnpm-store/
+/.yarn/cache/
+/.yarn/unplugged/
+/.yarn/build-state.yml
+/.yarn/install-state.gz
 
 # ---------------------------------------------------------
 # IDE / Editors
 # ---------------------------------------------------------
-
-# JetBrains
 .idea/
 *.iml
 
-# VS Code
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 !.vscode/launch.json
 !.vscode/tasks.json
-
-# VS Code local-only files
 .vscode/*.code-snippets
+
 .history/
-
-# Fleet
+.c9/
 .fleet/
+*.launch
+*.sublime-workspace
 
-# Visual Studio
 .vs/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# Vim
 *.swp
 *.swo
 *~
@@ -150,9 +155,10 @@ Desktop.ini
 # ---------------------------------------------------------
 *.sqlite
 *.sqlite3
+*.tgz
 
 # ---------------------------------------------------------
-# Firebase / cloud / deployment local files
+# Firebase / deployment
 # ---------------------------------------------------------
 .firebase/
 .vercel/
@@ -160,35 +166,3 @@ Desktop.ini
 .serverless/
 .aws-sam/
 
-# ---------------------------------------------------------
-# Storybook
-# ---------------------------------------------------------
-storybook-static/
-
-# ---------------------------------------------------------
-# Cypress / Playwright artifacts
-# ---------------------------------------------------------
-cypress/videos/
-cypress/screenshots/
-playwright/.cache/
-
-# ---------------------------------------------------------
-# Angular ESLint / tooling / analyzers
-# ---------------------------------------------------------
-.angular-eslint/
-.stats.json
-
-# ---------------------------------------------------------
-# Misc generated assets
-# ---------------------------------------------------------
-*.tgz
-
-# ---------------------------------------------------------
-# Uncomment if your project generates these locally
-# ---------------------------------------------------------
-# /.npm/
-# /.pnpm-store/
-# /.yarn/cache/
-# /.yarn/unplugged/
-# /.yarn/build-state.yml
-# /.yarn/install-state.gz
