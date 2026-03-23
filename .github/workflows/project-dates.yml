@@ -1,0 +1,154 @@
+name: Project Dates
+
+on:
+    projects_v2_item:
+        types: [edited]
+
+jobs:
+    set-dates:
+        name: Set Start / End Date on Status Change
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+
+        steps:
+            - name: Set date field based on status
+              env:
+                  GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+                  PROJECT_ITEM_ID: ${{ github.event.projects_v2_item.node_id }}
+                  PROJECT_ID: ${{ github.event.projects_v2_item.project_node_id }}
+              run: |
+                  # Retrieve field metadata (IDs for Status, Start Date, End Date).
+                  # first: 50 is used to avoid silently missing fields on large projects.
+                  FIELDS=$(gh api graphql -f query='
+                    query($projectId: ID!) {
+                      node(id: $projectId) {
+                        ... on ProjectV2 {
+                          fields(first: 50) {
+                            nodes {
+                              ... on ProjectV2Field {
+                                id
+                                name
+                              }
+                              ... on ProjectV2SingleSelectField {
+                                id
+                                name
+                                options { id name }
+                              }
+                              ... on ProjectV2IterationField {
+                                id
+                                name
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }' -f projectId="$PROJECT_ID")
+
+                  STATUS_FIELD_ID=$(echo "$FIELDS" | jq -r '
+                    .data.node.fields.nodes[]
+                    | select(.name == "Status") | .id')
+
+                  START_DATE_FIELD_ID=$(echo "$FIELDS" | jq -r '
+                    .data.node.fields.nodes[]
+                    | select(.name == "Start Date") | .id')
+
+                  END_DATE_FIELD_ID=$(echo "$FIELDS" | jq -r '
+                    .data.node.fields.nodes[]
+                    | select(.name == "End Date") | .id')
+
+                  IN_PROGRESS_OPTION_ID=$(echo "$FIELDS" | jq -r '
+                    .data.node.fields.nodes[]
+                    | select(.name == "Status")
+                    | .options[]
+                    | select(.name == "In Progress") | .id')
+
+                  DONE_OPTION_ID=$(echo "$FIELDS" | jq -r '
+                    .data.node.fields.nodes[]
+                    | select(.name == "Status")
+                    | .options[]
+                    | select(.name == "Done") | .id')
+
+                  # Validate that all required field IDs were resolved.
+                  if [ -z "$STATUS_FIELD_ID" ]; then
+                    echo "Error: 'Status' field not found in project. Check the field name." >&2
+                    exit 1
+                  fi
+                  if [ -z "$START_DATE_FIELD_ID" ]; then
+                    echo "Error: 'Start Date' field not found in project. Check the field name." >&2
+                    exit 1
+                  fi
+                  if [ -z "$END_DATE_FIELD_ID" ]; then
+                    echo "Error: 'End Date' field not found in project. Check the field name." >&2
+                    exit 1
+                  fi
+                  if [ -z "$IN_PROGRESS_OPTION_ID" ]; then
+                    echo "Error: 'In Progress' option not found in Status field. Check the option name." >&2
+                    exit 1
+                  fi
+                  if [ -z "$DONE_OPTION_ID" ]; then
+                    echo "Error: 'Done' option not found in Status field. Check the option name." >&2
+                    exit 1
+                  fi
+
+                  # Retrieve current status of the item.
+                  # first: 50 is used to avoid silently missing values on items with many fields.
+                  CURRENT_STATUS=$(gh api graphql -f query='
+                    query($itemId: ID!) {
+                      node(id: $itemId) {
+                        ... on ProjectV2Item {
+                          fieldValues(first: 50) {
+                            nodes {
+                              ... on ProjectV2ItemFieldSingleSelectValue {
+                                field { ... on ProjectV2SingleSelectField { id } }
+                                optionId
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }' -f itemId="$PROJECT_ITEM_ID" \
+                    | jq -r --arg fid "$STATUS_FIELD_ID" '
+                      .data.node.fieldValues.nodes[]
+                      | select(.field.id == $fid)
+                      | .optionId')
+
+                  # TODAY is formatted as YYYY-MM-DD (ISO 8601), the format required by
+                  # the GitHub Projects v2 GraphQL API for Date fields.
+                  TODAY=$(date -u +"%Y-%m-%d")
+
+                  if [ "$CURRENT_STATUS" = "$IN_PROGRESS_OPTION_ID" ]; then
+                    echo "Status is In Progress – setting Start Date to $TODAY"
+                    gh api graphql -f query='
+                      mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
+                        updateProjectV2ItemFieldValue(input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: { date: $value }
+                        }) { projectV2Item { id } }
+                      }' \
+                      -f projectId="$PROJECT_ID" \
+                      -f itemId="$PROJECT_ITEM_ID" \
+                      -f fieldId="$START_DATE_FIELD_ID" \
+                      -f value="$TODAY"
+
+                  elif [ "$CURRENT_STATUS" = "$DONE_OPTION_ID" ]; then
+                    echo "Status is Done – setting End Date to $TODAY"
+                    gh api graphql -f query='
+                      mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
+                        updateProjectV2ItemFieldValue(input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: { date: $value }
+                        }) { projectV2Item { id } }
+                      }' \
+                      -f projectId="$PROJECT_ID" \
+                      -f itemId="$PROJECT_ITEM_ID" \
+                      -f fieldId="$END_DATE_FIELD_ID" \
+                      -f value="$TODAY"
+
+                  else
+                    echo "Status did not change to In Progress or Done – nothing to update."
+                  fi
