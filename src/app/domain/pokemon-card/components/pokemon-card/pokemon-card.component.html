@@ -1,0 +1,10 @@
+<div>
+    <img src="/types/15.webp"/>
+    <p>{{ id }}</p>
+    <p>{{ name }}</p>
+    <div class="types_list">
+        @for (type of types; track type) {
+            <app-type [currentType]="type"></app-type>
+        }
+    </div>
+</div>
