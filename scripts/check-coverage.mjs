@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import fs from "node:fs";
-import path from "node:path";
+import fs from 'node:fs';
+import path from 'node:path';
 
-const COVERAGE_DIR = path.resolve(process.cwd(), "coverage");
+const COVERAGE_DIR = path.resolve(process.cwd(), 'coverage');
 const THRESHOLDS = {
-    lines: Number(process.env.COVERAGE_LINES ?? "80"),
-    branches: Number(process.env.COVERAGE_BRANCHES ?? "70"),
-    functions: Number(process.env.COVERAGE_FUNCTIONS ?? "80"),
+    lines: Number(process.env.COVERAGE_LINES ?? '80'),
+    branches: Number(process.env.COVERAGE_BRANCHES ?? '70'),
+    functions: Number(process.env.COVERAGE_FUNCTIONS ?? '80'),
 };
 
 function findLcovFiles(dir) {
@@ -24,7 +24,7 @@ function findLcovFiles(dir) {
             files.push(...findLcovFiles(fullPath));
             continue;
         }
-        if (entry.isFile() && entry.name === "lcov.info") {
+        if (entry.isFile() && entry.name === 'lcov.info') {
             files.push(fullPath);
         }
     }
@@ -40,30 +40,30 @@ function parseLcov(content) {
     let functionTotal = 0;
     let functionCovered = 0;
 
-    for (const rawLine of content.split("\n")) {
+    for (const rawLine of content.split('\n')) {
         const line = rawLine.trim();
-        if (line.startsWith("DA:")) {
+        if (line.startsWith('DA:')) {
             lineTotal += 1;
-            const hits = Number(line.split(",")[1] ?? "0");
+            const hits = Number(line.split(',')[1] ?? '0');
             if (hits > 0) {
                 lineCovered += 1;
             }
             continue;
         }
-        if (line.startsWith("BRF:")) {
-            branchTotal += Number(line.slice(4) || "0");
+        if (line.startsWith('BRF:')) {
+            branchTotal += Number(line.slice(4) || '0');
             continue;
         }
-        if (line.startsWith("BRH:")) {
-            branchCovered += Number(line.slice(4) || "0");
+        if (line.startsWith('BRH:')) {
+            branchCovered += Number(line.slice(4) || '0');
             continue;
         }
-        if (line.startsWith("FNF:")) {
-            functionTotal += Number(line.slice(4) || "0");
+        if (line.startsWith('FNF:')) {
+            functionTotal += Number(line.slice(4) || '0');
             continue;
         }
-        if (line.startsWith("FNH:")) {
-            functionCovered += Number(line.slice(4) || "0");
+        if (line.startsWith('FNH:')) {
+            functionCovered += Number(line.slice(4) || '0');
         }
     }
 
@@ -83,7 +83,7 @@ function toPercent(covered, total) {
 
 const lcovFiles = findLcovFiles(COVERAGE_DIR);
 if (lcovFiles.length === 0) {
-    console.error("No lcov.info found. Run tests with coverage before this check.");
+    console.error('No lcov.info found. Run tests with coverage before this check.');
     process.exit(1);
 }
 
@@ -94,7 +94,7 @@ const merged = {
 };
 
 for (const file of lcovFiles) {
-    const data = parseLcov(fs.readFileSync(file, "utf8"));
+    const data = parseLcov(fs.readFileSync(file, 'utf8'));
     merged.lines.covered += data.lines.covered;
     merged.lines.total += data.lines.total;
     merged.branches.covered += data.branches.covered;
@@ -114,18 +114,17 @@ console.log(
         `Coverage lines: ${report.lines.toFixed(2)}% (threshold ${THRESHOLDS.lines}%)`,
         `Coverage branches: ${report.branches.toFixed(2)}% (threshold ${THRESHOLDS.branches}%)`,
         `Coverage functions: ${report.functions.toFixed(2)}% (threshold ${THRESHOLDS.functions}%)`,
-    ].join("\n"),
+    ].join('\n'),
 );
 
 const failed = [];
-if (report.lines < THRESHOLDS.lines) failed.push("lines");
-if (report.branches < THRESHOLDS.branches) failed.push("branches");
-if (report.functions < THRESHOLDS.functions) failed.push("functions");
+if (report.lines < THRESHOLDS.lines) failed.push('lines');
+if (report.branches < THRESHOLDS.branches) failed.push('branches');
+if (report.functions < THRESHOLDS.functions) failed.push('functions');
 
 if (failed.length > 0) {
-    console.error(`Coverage check failed for: ${failed.join(", ")}`);
+    console.error(`Coverage check failed for: ${failed.join(', ')}`);
     process.exit(1);
 }
 
-console.log("Coverage check passed.");
-
+console.log('Coverage check passed.');

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Pokedexle logo">
+  <defs>
+    <linearGradient id="shell" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#f87171" />
+      <stop offset="100%" stop-color="#ef4444" />
+    </linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="44" fill="#ffffff" stroke="#111827" stroke-width="6" />
+  <path d="M8 48a40 40 0 0 1 80 0Z" fill="url(#shell)" />
+  <path d="M8 48h80" stroke="#111827" stroke-width="6" />
+  <circle cx="48" cy="48" r="14" fill="#ffffff" stroke="#111827" stroke-width="6" />
+  <circle cx="48" cy="48" r="6" fill="#d1d5db" />
+</svg>

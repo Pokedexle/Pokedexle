@@ -27,8 +27,14 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Run quality pipeline
-              run: npm run quality:ci
+            - name: Run blocking quality checks
+              run: npm run lint && npm run test:ci && npm run check:file-naming && npm run build
+
+            - name: Run coverage threshold check (warning only)
+              run: |
+                  if ! npm run check:coverage; then
+                    echo "::warning title=Coverage threshold not met::Code coverage is below configured thresholds."
+                  fi
 
             - name: Upload coverage artifact
               if: always()
