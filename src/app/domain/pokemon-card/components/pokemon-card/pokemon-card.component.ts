@@ -8,8 +8,12 @@ import { TypeComponent } from '../../../../shared/components/type/type.component
   styleUrl: './pokemon-card.component.scss'
 })
 export class PokemonCardComponent {
-    id = 132
-    currentImage = "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/sprites/132/shiny.png"
-    name= "ditto"
-    types = [1, 14]
+    id = 132;
+    currentImage = '/sprites/132/shiny.png';
+    name = 'ditto';
+    types = [1, 14];
+
+    get formattedId(): string {
+        return `#${this.id.toString().padStart(3, '0')}`;
+    }
 }
