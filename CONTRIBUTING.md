@@ -141,7 +141,6 @@ Please contact maintainers by email instead:
 - `corentinjere@gmail.com`
 - `louis.tnlsvt@gmail.com`
 
-
 ## Contribution Workflow
 
 1. Create a branch that matches the required pattern.

@@ -64,24 +64,24 @@ They may take any action they deem appropriate to protect the community, includi
 When a report is validated, maintainers may apply the following enforcement ladder, depending on impact and severity. Lower steps may be skipped when necessary.
 
 1. Warning
-   - Event: A single incident or a low-severity violation.
-   - Consequence: Private written warning.
-   - Repair: Acknowledgment, clarification, and corrective behavior.
+    - Event: A single incident or a low-severity violation.
+    - Consequence: Private written warning.
+    - Repair: Acknowledgment, clarification, and corrective behavior.
 
 2. Temporarily Limited Activities
-   - Event: Repeated behavior after a warning, or a more serious first incident.
-   - Consequence: Temporary limits on specific interactions or channels.
-   - Repair: Reflection period, corrective action, and respectful re-engagement.
+    - Event: Repeated behavior after a warning, or a more serious first incident.
+    - Consequence: Temporary limits on specific interactions or channels.
+    - Repair: Reflection period, corrective action, and respectful re-engagement.
 
 3. Temporary Suspension
-   - Event: Repeated violations or a serious violation affecting community safety.
-   - Consequence: Temporary suspension from project spaces.
-   - Repair: Compliance with return conditions and demonstrated behavior change.
+    - Event: Repeated violations or a serious violation affecting community safety.
+    - Consequence: Temporary suspension from project spaces.
+    - Repair: Compliance with return conditions and demonstrated behavior change.
 
 4. Permanent Ban
-   - Event: Severe or repeated violations where safety cannot otherwise be ensured.
-   - Consequence: Permanent removal from project participation spaces.
-   - Repair: Not applicable at this level.
+    - Event: Severe or repeated violations where safety cannot otherwise be ensured.
+    - Consequence: Permanent removal from project participation spaces.
+    - Repair: Not applicable at this level.
 
 ## Attribution
 
@@ -98,4 +98,3 @@ For FAQs, translations, and related guidance:
 - https://www.contributor-covenant.org/faq
 - https://www.contributor-covenant.org/translations
 - https://www.contributor-covenant.org/resources
-

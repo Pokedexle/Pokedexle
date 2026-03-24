@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-import fs from "node:fs";
-import path from "node:path";
+import fs from 'node:fs';
+import path from 'node:path';
 
-const SRC_DIR = path.resolve(process.cwd(), "src");
-const ALLOWED_EXTENSIONS = new Set([".ts", ".html", ".scss"]);
+const SRC_DIR = path.resolve(process.cwd(), 'src');
+const ALLOWED_EXTENSIONS = new Set(['.ts', '.html', '.scss']);
 const EXCLUDED_FILES = new Set([
-    path.resolve(SRC_DIR, "index.html"),
-    path.resolve(SRC_DIR, "main.ts"),
-    path.resolve(SRC_DIR, "styles.scss"),
+    path.resolve(SRC_DIR, 'index.html'),
+    path.resolve(SRC_DIR, 'main.ts'),
+    path.resolve(SRC_DIR, 'styles.scss'),
 ]);
 
 const SEGMENT_REGEX = /^[a-z0-9-]+$/;
@@ -34,7 +34,7 @@ function isValidBaseName(baseName) {
     // - pokemon-card.spec
     // - app.routes
     // - app.config
-    const segments = baseName.split(".");
+    const segments = baseName.split('.');
     if (segments.length === 0) {
         return false;
     }
@@ -42,7 +42,7 @@ function isValidBaseName(baseName) {
 }
 
 if (!fs.existsSync(SRC_DIR)) {
-    console.error("Missing src/ directory.");
+    console.error('Missing src/ directory.');
     process.exit(1);
 }
 
@@ -64,13 +64,12 @@ for (const filePath of walk(SRC_DIR)) {
 }
 
 if (errors.length > 0) {
-    console.error("Invalid file naming convention detected:");
+    console.error('Invalid file naming convention detected:');
     for (const file of errors) {
         console.error(` - ${file}`);
     }
-    console.error("Expected kebab-case segments separated by dots if needed.");
+    console.error('Expected kebab-case segments separated by dots if needed.');
     process.exit(1);
 }
 
-console.log("File naming check passed.");
-
+console.log('File naming check passed.');
