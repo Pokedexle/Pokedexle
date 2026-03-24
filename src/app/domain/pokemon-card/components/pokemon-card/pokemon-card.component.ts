@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { TypeComponent } from '../../../../shared/components/type/type.component';
 
 @Component({
@@ -8,12 +8,21 @@ import { TypeComponent } from '../../../../shared/components/type/type.component
   styleUrl: './pokemon-card.component.scss'
 })
 export class PokemonCardComponent {
-    id = 132;
-    currentImage = '/sprites/132/shiny.png';
+    @Input()
+    id = 6;
+    currentImage = '/sprites/483/shiny.png';
     name = 'ditto';
     types = [1, 14];
 
     get formattedId(): string {
         return `#${this.id.toString().padStart(3, '0')}`;
+    }
+
+    onHover(){
+        this.currentImage = '/sprites/'+this.id+'/shiny.png';
+    }
+
+    onLeave(){
+        this.currentImage = '/sprites/'+this.id+'/regular.png';
     }
 }
