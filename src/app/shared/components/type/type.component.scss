@@ -1,0 +1,21 @@
+:host {
+    display: inline-flex;
+}
+
+.type-chip {
+    align-items: center;
+    border: 1px solid #dbe3ec;
+    border-radius: 999px;
+    display: inline-flex;
+    justify-content: center;
+    min-height: 1.55rem;
+    min-width: 2.55rem;
+    padding: 0.15rem 0.35rem;
+}
+
+.type-chip img {
+    display: block;
+    height: 1rem;
+    object-fit: contain;
+    width: 2rem;
+}

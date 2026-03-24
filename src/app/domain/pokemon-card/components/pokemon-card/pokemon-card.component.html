@@ -1,0 +1,14 @@
+<article class="pokemon-card" (mouseenter)="onHover()" (mouseleave)="onLeave()">
+    <div class="pokemon-card__media">
+        <span class="pokemon-card__id">{{ formattedId }}</span>
+        <img id="sprite" [src]="currentImage" [alt]="name" />
+    </div>
+
+    <h2 class="pokemon-card__name">{{ name }}</h2>
+
+    <div class="pokemon-card__types">
+        @for (type of types; track type) {
+            <app-type [currentType]="type"></app-type>
+        }
+    </div>
+</article>
