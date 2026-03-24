@@ -1,0 +1,16 @@
+<form class="pokemon-search" role="search" (submit)="$event.preventDefault()">
+    <label class="pokemon-search__label" for="pokemon-search-input">Rechercher un Pokémon</label>
+    <input
+        id="pokemon-search-input"
+        class="pokemon-search__input"
+        type="text"
+        placeholder="Rechercher un Pokémon"
+    />
+    <button class="pokemon-search__icon" type="submit" aria-label="Valider la recherche">
+        <img
+            class="pokemon-search__icon-image"
+            src="/nav-bar/pokemon-search/search-icon.svg"
+            alt=""
+        />
+    </button>
+</form>
