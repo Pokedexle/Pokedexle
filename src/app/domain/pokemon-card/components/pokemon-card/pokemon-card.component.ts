@@ -10,7 +10,7 @@ import { TypeComponent } from '../../../../shared/components/type/type.component
 export class PokemonCardComponent {
     @Input()
     id = 6;
-    currentImage = '/sprites/483/shiny.png';
+    currentImage = '/sprites/'+this.id+'/regular.png';
     name = 'ditto';
     types = [1, 14];
 
