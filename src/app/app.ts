@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBar } from './core/components/nav-bar/nav-bar';
-import {PokemonCardComponent} from './domain/pokemon-card/components/pokemon-card/pokemon-card.component';
+import {PokemonCardComponent} from './domain/pokemon-card-list/components/pokemon-card/pokemon-card.component';
 
 @Component({
     selector: 'app-root',
