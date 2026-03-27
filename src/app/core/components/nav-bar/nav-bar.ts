@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PokemonSearchComponent } from '../../../domain/pokemon-search/components/pokemon-search/pokemon-search.component';
+import { PokemonSearchComponent } from '../../../domain/pokemon-search/pokemon-search.component';
 
 @Component({
     selector: 'app-nav-bar',

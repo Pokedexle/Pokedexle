@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import { TypeComponent } from '../../../../shared/components/type/type.component';
+import {PokemonCardModel} from '../../models/pokemon-card.model';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -9,10 +10,12 @@ import { TypeComponent } from '../../../../shared/components/type/type.component
 })
 export class PokemonCardComponent {
     @Input()
-    id = 6;
+    pokemonCardModel!: PokemonCardModel;
+
+    id = this.pokemonCardModel.id;
     currentImage = '/sprites/'+this.id+'/regular.png';
-    name = 'ditto';
-    types = [1, 14];
+    name = this.pokemonCardModel.name;
+    types = this.pokemonCardModel.types;
 
     get formattedId(): string {
         return `#${this.id.toString().padStart(3, '0')}`;
