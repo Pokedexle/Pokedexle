@@ -1,7 +1,11 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {PokemonSpeciesModel} from './pokemon-species.model';
+import {
+    adaptPokemonSpeciesApiResponse,
+    PokemonSpeciesApiResponse,
+} from './pokemon-species-api.adapter';
 
 const pokemonSpeciesRequestURL = 'https://pokeapi.co/api/v2/pokemon-species/';
 
@@ -10,8 +14,10 @@ export class PokemonSpeciesService {
     private readonly httpClient = inject(HttpClient);
 
     getPokemonSpecies(pokemonId: number): Observable<PokemonSpeciesModel> {
-        return this.httpClient.get<PokemonSpeciesModel>(
+        return this.httpClient.get<PokemonSpeciesApiResponse>(
             `${pokemonSpeciesRequestURL}${pokemonId}`
+        ).pipe(
+            map((response) => adaptPokemonSpeciesApiResponse(response))
         );
     }
 }
