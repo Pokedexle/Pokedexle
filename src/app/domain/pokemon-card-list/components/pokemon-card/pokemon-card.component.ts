@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, signal} from '@angular/core';
 import { TypeComponent } from '../../../../shared/components/type/type.component';
 import {PokemonCardModel} from '../../models/pokemon-card.model';
 
@@ -8,24 +8,32 @@ import {PokemonCardModel} from '../../models/pokemon-card.model';
   templateUrl: './pokemon-card.component.html',
   styleUrl: './pokemon-card.component.scss'
 })
-export class PokemonCardComponent {
+export class PokemonCardComponent{
     @Input()
     pokemonCardModel!: PokemonCardModel;
 
-    id = this.pokemonCardModel.id;
-    currentImage = '/sprites/'+this.id+'/regular.png';
-    name = this.pokemonCardModel.name;
-    types = this.pokemonCardModel.types;
+    private readonly isShiny = signal(false);
+
+    get name(): string {
+        return this.pokemonCardModel?.name ?? '';
+    }
+    get types(): number[] {
+        return this.pokemonCardModel?.types ?? [];
+    }
 
     get formattedId(): string {
-        return `#${this.id.toString().padStart(3, '0')}`;
+        const id = this.pokemonCardModel?.id;
+        return `#${id.toString().padStart(3, '0')}`;
+    }
+    get currentImage(): string {
+        const id = this.pokemonCardModel?.id;
+        return `/sprites/${id}/${this.isShiny() ? 'shiny' : 'regular'}.png`;
     }
 
     onHover(){
-        this.currentImage = '/sprites/'+this.id+'/shiny.png';
+        this.isShiny.set(true);
     }
-
     onLeave(){
-        this.currentImage = '/sprites/'+this.id+'/regular.png';
+        this.isShiny.set(false);
     }
 }
