@@ -1,83 +1,104 @@
+/* 1) Cadre du composant dans la grille parente */
 :host {
     display: block;
-    max-width: 21rem;
     width: 100%;
+    max-width: 21rem;
 }
 
-.pokemon-card{
-    min-width: 200px;
+/* 2) Carte: variables de theme, layout interne et style de surface */
+.pokemon-card {
     --card-radius: 1.1rem;
     --card-surface: #f8fafc;
-    aspect-ratio: 1 / 1.12;
+    --card-height: 230px;
+    --card-name-size: calc(var(--card-height) * 0.07);
+    --card-id-size: calc(var(--card-height) * 0.05);
+    --card-sprite-height: calc(var(--card-height) * 0.66);
+    --card-type-height: calc(var(--card-height) * 0.10);
+    --card-vertical-gap: calc(var(--card-height) * 0.04);
+
+    display: grid;
+    grid-template-rows: var(--card-sprite-height) minmax(0, auto) var(--card-type-height);
+    row-gap: var(--card-vertical-gap);
+
+    min-width: 200px;
+    aspect-ratio: 1 / 1.15;
+    padding: 4%;
+
+    border: 2.5px solid transparent;
+    border-radius: var(--card-radius);
     background:
         linear-gradient(var(--card-surface), var(--card-surface)) padding-box,
         linear-gradient(135deg, #111111, #111111) border-box;
-    border: 2.5px solid transparent;
-    border-radius: var(--card-radius);
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    display: grid;
-    gap: 0.65rem;
-    grid-template-rows: minmax(0, 1fr) auto auto;
-    padding: 0.85rem;
     transition:
         background 260ms ease,
         box-shadow 260ms ease,
         transform 220ms ease;
 }
 
+/* 3) Effet d'interaction au survol */
 .pokemon-card:hover {
+    border: 3px solid transparent;
     background:
-        linear-gradient(var(--card-surface), var(--card-surface)) padding-box,
+        /*linear-gradient(var(--card-surface), var(--card-surface)) padding-box,*/
         linear-gradient(130deg, #ef4444 0%, #fb923c 34%, #8b5cf6 68%, #3b82f6 100%) border-box;
     box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
-    transform: translateY(-2px);
-    border: 4px solid transparent;
 }
 
+/* 4) Zone media: fond du visuel + ancrage pour l'id absolu */
 .pokemon-card__media {
-    /*align-items: center;*/
-     background: linear-gradient(180deg, #f1f5f9 0%, #eef2ff 100%);
-    border-radius: calc(var(--card-radius) - 0.3rem);
     position: relative;
+    height: var(--card-sprite-height);
+    border-radius: calc(var(--card-radius) - 0.3rem);
+    /*background: linear-gradient(180deg, #f1f5f9 0%, #eef2ff 100%);*/
 }
 
+/* 5) Sprite: prend toute la zone media et garde son ratio */
+/*  */
 #sprite {
-    /*display: block;*/
-    filter: drop-shadow(0 10px 12px rgba(15, 23, 42, 0.2));
-    height: 100%;
-    width: 100%;
+    display: block;
+    margin-inline: auto;
     object-fit: contain;
+
+    width: 90%;
+    height: 100%;
+
+    filter: drop-shadow(0 10px 12px rgba(15, 23, 42, 0.2));
 }
 
+/* 6) Badge id: superpose dans le coin haut droit */
 .pokemon-card__id {
-    font-weight: 700;
-    padding: 0.1rem 0.2rem;
     position: absolute;
-    right: 0.55rem;
     top: 0.55rem;
+    right: 0.55rem;
+    padding: 0.1rem 0.2rem;
+
+    font-weight: 700;
+    font-size: var(--card-id-size);
+    line-height: 1;
 }
 
+/* 7) Nom: style typographique */
 .pokemon-card__name {
-    letter-spacing: 0.01em;
     margin: 0;
     text-align: center;
     text-transform: capitalize;
+    letter-spacing: 0.01em;
+    font-size: var(--card-name-size);
+    line-height: 1;
 }
 
+/* 8) Types: aligne les badges de type sur une ligne */
 .pokemon-card__types {
-    align-items: center;
     display: flex;
+    align-items: center;
+    justify-content: left;
     gap: 0.4rem;
+    height: var(--card-type-height);
+    min-height: 0;
 }
-/*
-@media (max-width: 480px) {
-    .pokemon-card {
-        gap: 0.5rem;
-        padding: 0.7rem;
-    }
 
-    #sprite {
-        max-height: 9.5rem;
-    }
+.pokemon-card__types app-type {
+    --type-chip-height: var(--card-type-height);
+    height: 100%;
 }
-*/
