@@ -16,7 +16,7 @@ jobs:
                   BRANCH: ${{ github.head_ref }}
                   BASE: ${{ github.base_ref }}
               run: |
-                  BRANCH_REGEX='^([Ff]eature|[Ff]ix|[Dd]evops|[Dd]ocs|[Rr]elease|[Cc]hore)/[A-Za-z0-9._-]+$'
+                  BRANCH_REGEX='^([Ff]eature|[Ff]ix|[Dd]evops|[Dd]ocs|[Rr]elease|[Rr]efactor|[Cc]hore)/[A-Za-z0-9._-]+$'
                   if [[ "$BRANCH" == "develop" && "$BASE" == "master" ]]; then
                     echo "Exception autorisee: develop -> master"
                     exit 0

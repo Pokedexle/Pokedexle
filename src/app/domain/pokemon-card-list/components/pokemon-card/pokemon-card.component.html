@@ -1,4 +1,15 @@
-<article class="pokemon-card" (mouseenter)="onHover()" (mouseleave)="onLeave()">
+<article
+    #card
+    class="pokemon-card"
+    [style.--card-height]="cardHeightCss"
+    [style.--card-name-size]="cardNameSizeCss"
+    [style.--card-id-size]="cardIdSizeCss"
+    [style.--card-sprite-height]="cardSpriteHeightCss"
+    [style.--card-type-height]="cardTypeHeightCss"
+    [style.--card-vertical-gap]="cardVerticalGapCss"
+    (mouseenter)="onHover()"
+    (mouseleave)="onLeave()"
+>
     <div class="pokemon-card__media">
         <span class="pokemon-card__id">{{ formattedId }}</span>
         <img id="sprite" [src]="currentImage" [alt]="name" />
