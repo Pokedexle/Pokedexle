@@ -1,1 +1,11 @@
-<p>pokemon-card-list works!</p>
+@if (isLoading()) {
+    <p>Chargement des Pokemon...</p>
+} @else if (hasError()) {
+    <p>Une erreur est survenue pendant le chargement.</p>
+} @else {
+    <div #pokemonCardList class="pokemon-card-list" [style.--pokemon-card-gap]="pokemonCardGapCss">
+        @for (pokemonCard of pokemonCards(); track $index) {
+            <app-pokemon-card class="pokemon-card" [pokemonCardModel]="pokemonCard"></app-pokemon-card>
+        }
+    </div>
+}

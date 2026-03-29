@@ -1,11 +1,9 @@
-/* 1) Cadre du composant dans la grille parente */
 :host {
     display: block;
     width: 100%;
     max-width: 21rem;
 }
 
-/* 2) Carte: variables de theme, layout interne et style de surface */
 .pokemon-card {
     --card-radius: 1.1rem;
     --card-surface: #f8fafc;
@@ -36,7 +34,6 @@
         transform 220ms ease;
 }
 
-/* 3) Effet d'interaction au survol */
 .pokemon-card:hover {
     border: 3px solid transparent;
     background:
@@ -45,7 +42,6 @@
     box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
 }
 
-/* 4) Zone media: fond du visuel + ancrage pour l'id absolu */
 .pokemon-card__media {
     position: relative;
     height: var(--card-sprite-height);
@@ -53,8 +49,6 @@
     /*background: linear-gradient(180deg, #f1f5f9 0%, #eef2ff 100%);*/
 }
 
-/* 5) Sprite: prend toute la zone media et garde son ratio */
-/*  */
 #sprite {
     display: block;
     margin-inline: auto;
@@ -66,7 +60,6 @@
     filter: drop-shadow(0 10px 12px rgba(15, 23, 42, 0.2));
 }
 
-/* 6) Badge id: superpose dans le coin haut droit */
 .pokemon-card__id {
     position: absolute;
     top: 0.55rem;
@@ -78,7 +71,6 @@
     line-height: 1;
 }
 
-/* 7) Nom: style typographique */
 .pokemon-card__name {
     margin: 0;
     text-align: center;
@@ -88,7 +80,6 @@
     line-height: 1;
 }
 
-/* 8) Types: aligne les badges de type sur une ligne */
 .pokemon-card__types {
     display: flex;
     align-items: center;

@@ -1,0 +1,29 @@
+:host {
+    display: block;
+    --pokemon-card-width: 200px;
+    --pokemon-card-gap: calc(var(--pokemon-card-width) * 0.1);
+}
+
+@media (orientation: landscape) and (min-width: 950px) and (max-width: 1219.99px) { :host{margin-left: 5%; margin-right: 5%;} }
+@media (orientation: landscape) and (min-width: 1220px) and (max-width: 1599.99px) { :host{margin-left: 10%; margin-right: 10%;} }
+@media (orientation: landscape) and (min-width: 1500px) and (max-width: 1599.99px) { :host{margin-left: 11%; margin-right: 11%;} }
+@media (orientation: landscape) and (min-width: 1600px) and (max-width: 1649.99px) { :host{margin-left: 12%; margin-right: 12%;} }
+@media (orientation: landscape) and (min-width: 1650px) and (max-width: 1699.99px) { :host{margin-left: 13%; margin-right: 13%;} }
+@media (orientation: landscape) and (min-width: 1700px) and (max-width: 1749.99px) { :host{margin-left: 14%; margin-right: 14%;} }
+@media (orientation: landscape) and (min-width: 1750px) and (max-width: 1799.99px) { :host{margin-left: 15%; margin-right: 15%;} }
+@media (orientation: landscape) and (min-width: 1800px) and (max-width: 1849.99px) { :host{margin-left: 16%; margin-right: 16%;} }
+@media (orientation: landscape) and (min-width: 1850px) and (max-width: 1909.99px) { :host{margin-left: 17%; margin-right: 17%;} }
+@media (orientation: landscape) and (min-width: 1910px) and (max-width: 2039.99px) { :host{margin-left: 18%; margin-right: 18%;} }
+@media (orientation: landscape) and (min-width: 2040px) { :host{margin-left: 20%; margin-right: 20%;} }
+
+.pokemon-card-list {
+    display: grid;
+    gap: var(--pokemon-card-gap);
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--pokemon-card-width)*1.1), 1fr));
+    align-items: stretch;
+    justify-items: center;
+}
+
+.pokemon-card {
+    min-width: var(--pokemon-card-width);
+}
