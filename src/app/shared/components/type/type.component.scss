@@ -1,21 +1,25 @@
 :host {
     display: inline-flex;
+    height: var(--type-chip-height, 1.55rem);
 }
 
 .type-chip {
+    box-sizing: border-box;
     align-items: center;
-    border: 1px solid #dbe3ec;
-    border-radius: 999px;
+    /*border: 1px solid #dbe3ec;*/
+    /*border-radius: 999px;*/
     display: inline-flex;
+    height: 100%;
     justify-content: center;
-    min-height: 1.55rem;
-    min-width: 2.55rem;
-    padding: 0.15rem 0.35rem;
+    min-height: 0;
+    min-width: calc(var(--type-chip-height, 1.55rem));
+    /*padding: calc(var(--type-chip-height, 1.55rem) * 0.08) calc(var(--type-chip-height, 1.55rem) * 0.2);*/
 }
 
 .type-chip img {
     display: block;
-    height: 1rem;
+    height: 100%;
+    max-height: 100%;
     object-fit: contain;
-    width: 2rem;
+    width: auto;
 }
