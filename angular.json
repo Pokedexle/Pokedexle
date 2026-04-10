@@ -72,6 +72,10 @@
                     "builder": "@angular/build:unit-test",
                     "options": {
                         "buildTarget": "Pokedexle:build:development",
+                        "codeCoverageReporters": [
+                            "lcov",
+                            "text-summary"
+                        ],
                         "tsConfig": "tsconfig.spec.json",
                         "runner": "vitest"
                     }
