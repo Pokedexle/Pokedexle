@@ -6,7 +6,7 @@ This document explains how to contribute to this repository based on the current
 
 The repository includes automated quality checks and local scripts:
 
-- Node.js version is defined in [.nvmrc](.nvmrc) (`22.12.0`).
+- Node.js version line is defined in [.nvmrc](.nvmrc) (`22`, minimum `22.12.0`).
 - Engine compatibility is defined in [package.json](package.json).
 - Formatting preferences are defined in [.editorconfig](.editorconfig) and [.prettierrc](.prettierrc).
 - CI quality workflow is defined in [.github/workflows/quality.yml](.github/workflows/quality.yml).

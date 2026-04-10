@@ -20,7 +20,7 @@ At this stage, the repository is intended to:
 
 Based on current repository configuration:
 
-- Angular 21
+- Angular 20.x
 - TypeScript
 - ESLint + angular-eslint
 - Vitest (via Angular test tooling) with coverage
@@ -31,7 +31,7 @@ Based on current repository configuration:
 
 ### Prerequisites
 
-- Node.js `22.12.0` (see [.nvmrc](.nvmrc))
+- Node.js `22.x` (minimum `22.12.0`, see [.nvmrc](.nvmrc))
 
 ### Install
 
@@ -81,4 +81,3 @@ See [LICENSE.md](LICENSE.md).
 
 This is an initialization-phase README for `v0.0.0`.  
 Project scope and documentation are expected to evolve as implementation milestones are delivered.
-
