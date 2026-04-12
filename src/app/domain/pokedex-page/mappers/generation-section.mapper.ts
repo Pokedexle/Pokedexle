@@ -10,7 +10,7 @@ export function mapGenerationToGenerationSection(generation: GenerationModel): G
 }
 
 function getPokemonIds(pokemons : PokemonNamedApiResource[]) {
-    let pokemonsIds : number[] = [];
+    const pokemonsIds : number[] = [];
     for (const pokemon of pokemons) {
        pokemonsIds.push( Number(pokemon.url.split("/")[6]) )
     }

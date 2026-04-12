@@ -17,10 +17,10 @@ export class PokedexPageComponent implements OnInit{
     private readonly pokedexPageService = inject(PokedexPageService);
 
     generations: GenerationSectionModel[] = [];
-    private readonly maxGeneration = 9;
     private nextGenerationToLoad = 1;
 
     ngOnInit() {
+        this.loadGeneration();
     }
 
     private loadGeneration(): void {
