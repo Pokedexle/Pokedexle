@@ -1,1 +1,6 @@
-<p>pokedex-page works!</p>
+<div>
+    @for (generation of generations; track generation.id) {
+        <app-generation-header [generationId]="generation.id"/>
+        <app-pokemon-card-list [pokemonIds]="generation.pokemonIds"/>
+    }
+</div>
