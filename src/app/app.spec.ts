@@ -1,12 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import {of} from 'rxjs';
 import { App } from './app';
+import {PokedexPageService} from './domain/pokedex-page/services/pokedex-page.service';
 
 describe('App', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [App],
-            providers: [provideRouter([])],
+            providers: [
+                provideRouter([]),
+                {
+                    provide: PokedexPageService,
+                    useValue: {
+                        getGeneration: () => of({id: 1, pokemonIds: []}),
+                    },
+                },
+            ],
         }).compileComponents();
     });
 
