@@ -1,3 +1,3 @@
 import {LocalizedName} from '../shared/localized-name.model';
 
-export type PokemonSpeciesName = LocalizedName;
+export type GenerationName = LocalizedName;

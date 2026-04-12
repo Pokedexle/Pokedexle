@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, Input, OnDestroy, OnInit, signal, ViewChild} from '@angular/core';
 import {PokemonCardComponent} from './components/pokemon-card/pokemon-card.component';
 import {PokemonCardListService} from './services/pokemon-card-list.service';
 import {PokemonCardModel} from './models/pokemon-card.model';
+import {concatMap, finalize, from, toArray} from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-card-list',
@@ -12,6 +13,9 @@ import {PokemonCardModel} from './models/pokemon-card.model';
   styleUrl: './pokemon-card-list.component.scss'
 })
 export class PokemonCardListComponent implements OnInit, AfterViewInit, OnDestroy {
+    @Input({ required: true })
+    pokemonIds!: number[];
+
     private readonly pokemonCardListService = inject(PokemonCardListService);
     private readonly pokemonCardGap = signal(20);
     private pokemonCardListRef?: ElementRef<HTMLElement>;
@@ -20,7 +24,7 @@ export class PokemonCardListComponent implements OnInit, AfterViewInit, OnDestro
     private observedCardElement?: HTMLElement;
     private animationFrameId?: number;
 
-    pokemonCards = signal<PokemonCardModel[]>([]);
+    pokemonCards: PokemonCardModel[] = [];
     isLoading = signal(true);
     hasError = signal(false);
 
@@ -35,8 +39,27 @@ export class PokemonCardListComponent implements OnInit, AfterViewInit, OnDestro
     }
 
     ngOnInit(): void {
-        this.loadPokemonCards();
+        this.loadPokemonCards(this.pokemonIds);
     }
+
+    private loadPokemonCards(pokemonIds: number[]): void {
+        from(pokemonIds).pipe(
+            concatMap( (id) => this.pokemonCardListService.getPokemonCard(id)),
+            toArray(),
+            finalize(() => this.isLoading.set(false))
+        ).subscribe({
+            next: (cards) => {
+                this.pokemonCards = cards;
+                this.isLoading.set(false);
+                this.scheduleGapUpdate();
+            },
+            error: () => {
+                this.hasError.set(true);
+                this.isLoading.set(false);
+            },
+        });
+    }
+
 
     ngAfterViewInit(): void {
         this.bindResizeObservers();
@@ -50,19 +73,7 @@ export class PokemonCardListComponent implements OnInit, AfterViewInit, OnDestro
         }
     }
 
-    private loadPokemonCards(): void {
-        this.pokemonCardListService.getPokemonCard(6).subscribe({
-            next: (pokemonCard) => {
-                this.pokemonCards.set(Array.from({length: 52}, () => pokemonCard));
-                this.isLoading.set(false);
-                this.scheduleGapUpdate();
-            },
-            error: () => {
-                this.hasError.set(true);
-                this.isLoading.set(false);
-            },
-        });
-    }
+
 
     private bindResizeObservers(): void {
         const listElement = this.pokemonCardListRef?.nativeElement;

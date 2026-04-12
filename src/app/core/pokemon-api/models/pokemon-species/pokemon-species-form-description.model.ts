@@ -1,6 +1,6 @@
-import {PokemonNamedApiResource} from '../shared/pokemon-named-api-resource.model';
+import {NamedApiResource} from '../shared/named-api-resource.model';
 
 export interface PokemonSpeciesFormDescription {
     description: string;
-    language: PokemonNamedApiResource;
+    language: NamedApiResource;
 }

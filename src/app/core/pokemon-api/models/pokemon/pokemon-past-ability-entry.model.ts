@@ -1,7 +1,7 @@
-import {PokemonNamedApiResource} from '../shared/pokemon-named-api-resource.model';
+import {NamedApiResource} from '../shared/named-api-resource.model';
 
 export interface PokemonPastAbilityEntry {
-    ability: PokemonNamedApiResource | null;
+    ability: NamedApiResource | null;
     isHidden: boolean;
     slot: number;
 }

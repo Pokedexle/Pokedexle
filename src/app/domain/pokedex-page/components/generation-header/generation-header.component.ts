@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-generation-header',
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './generation-header.component.scss'
 })
 export class GenerationHeaderComponent {
+    @Input({ required: true })
+    generationId!: number
+
     generationTitle!: string;
 }
