@@ -5,4 +5,14 @@
             <app-pokemon-card-list [pokemonIds]="generation.pokemonIds"/>
         </section>
     }
+    <div #generationSentinel class="pokedex-page__sentinel" aria-hidden="true"></div>
+
+    <div class="pokedex-page__status" aria-live="polite">
+        @if (isLoadingNextGeneration && nextGenerationToLoad < 10) {
+            <p class="pokedex-page__status-text">Chargement de la génération suivante...</p>
+        }
+        @if (nextGenerationToLoad === 10) {
+            <p class="pokedex-page__status-text">Toutes les générations sont chargées.</p>
+        }
+    </div>
 </div>
