@@ -41,7 +41,7 @@
 .pokemon-card:hover {
     border: 3px solid transparent;
     background:
-        /*linear-gradient(var(--card-surface), var(--card-surface)) padding-box,*/
+        linear-gradient(var(--card-surface), var(--card-surface)) padding-box,
         linear-gradient(130deg, #ef4444 0%, #fb923c 34%, #8b5cf6 68%, #3b82f6 100%) border-box;
     box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
 }
