@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
 import {PokedexPageService} from './services/pokedex-page.service';
 import {GenerationSectionModel} from './models/generation-section.model';
 import {GenerationHeaderComponent} from './components/generation-header/generation-header.component';
@@ -13,7 +13,7 @@ import {PokemonCardListComponent} from '../../shared/components/pokemon-card-lis
   templateUrl: './pokedex-page.component.html',
   styleUrl: './pokedex-page.component.scss'
 })
-export class PokedexPageComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PokedexPageComponent implements AfterViewInit, OnDestroy {
     private readonly pokedexPageService = inject(PokedexPageService);
     private generationObserver?: IntersectionObserver;
     private generationSentinelRef?: ElementRef<HTMLElement>;
@@ -29,9 +29,6 @@ export class PokedexPageComponent implements OnInit, AfterViewInit, OnDestroy {
         this.setupGenerationObserver();
     }
 
-    ngOnInit() {
-        //this.loadGeneration();
-    }
     ngAfterViewInit(): void {
         this.setupGenerationObserver();
     }
