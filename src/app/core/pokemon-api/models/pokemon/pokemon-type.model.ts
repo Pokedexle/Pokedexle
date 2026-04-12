@@ -1,6 +1,6 @@
-import {PokemonNamedApiResource} from '../shared/pokemon-named-api-resource.model';
+import {NamedApiResource} from '../shared/named-api-resource.model';
 
 export interface PokemonType {
     slot: number;
-    type: PokemonNamedApiResource;
+    type: NamedApiResource;
 }

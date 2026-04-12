@@ -1,7 +1,7 @@
-import {PokemonNamedApiResource} from '../shared/pokemon-named-api-resource.model';
+import {NamedApiResource} from '../shared/named-api-resource.model';
 
 export interface PokemonSpeciesFlavorText {
     flavorText: string;
-    language: PokemonNamedApiResource;
-    version: PokemonNamedApiResource;
+    language: NamedApiResource;
+    version: NamedApiResource;
 }

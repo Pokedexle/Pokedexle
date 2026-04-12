@@ -1,3 +1,3 @@
-export interface PokemonApiResource {
-    url: string;
-}
+import {ApiResource} from './api-resource.model';
+
+export type PokemonApiResource = ApiResource;

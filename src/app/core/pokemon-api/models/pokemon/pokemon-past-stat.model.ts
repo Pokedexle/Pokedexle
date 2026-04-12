@@ -1,7 +1,7 @@
-import {PokemonNamedApiResource} from '../shared/pokemon-named-api-resource.model';
+import {NamedApiResource} from '../shared/named-api-resource.model';
 import {PokemonStat} from './pokemon-stat.model';
 
 export interface PokemonPastStat {
-    generation: PokemonNamedApiResource;
+    generation: NamedApiResource;
     stats: PokemonStat[];
 }
