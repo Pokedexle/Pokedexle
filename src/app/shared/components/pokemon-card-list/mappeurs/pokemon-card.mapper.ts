@@ -1,8 +1,8 @@
-import {PokemonSpeciesModel} from '../../../core/pokemon-api/pokemon-species-client/pokemon-species.model';
-import {PokemonModel} from '../../../core/pokemon-api/pokemon-client/pokemon.model';
+import {PokemonSpeciesModel} from '../../../../core/pokemon-api/pokemon-species-client/pokemon-species.model';
+import {PokemonModel} from '../../../../core/pokemon-api/pokemon-client/pokemon.model';
 import {PokemonCardModel} from '../models/pokemon-card.model';
-import {PokemonSpeciesName} from '../../../core/pokemon-api/models/pokemon-species/pokemon-species-name.model';
-import {PokemonType} from '../../../core/pokemon-api/models/pokemon/pokemon-type.model';
+import {PokemonSpeciesName} from '../../../../core/pokemon-api/models/pokemon-species/pokemon-species-name.model';
+import {PokemonType} from '../../../../core/pokemon-api/models/pokemon/pokemon-type.model';
 
 
 export function mapPokemonSpeciesAndPokemonToPokemonCard(
