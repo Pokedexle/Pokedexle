@@ -1,6 +1,8 @@
-<div>
+<div class="pokedex-page">
     @for (generation of generations; track generation.id) {
-        <app-generation-header [generationId]="generation.id"/>
-        <app-pokemon-card-list [pokemonIds]="generation.pokemonIds"/>
+        <section class="pokedex-page__generation">
+            <app-generation-header [generationId]="generation.id"/>
+            <app-pokemon-card-list [pokemonIds]="generation.pokemonIds"/>
+        </section>
     }
 </div>

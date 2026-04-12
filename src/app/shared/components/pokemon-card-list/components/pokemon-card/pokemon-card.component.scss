@@ -5,8 +5,8 @@
 }
 
 .pokemon-card {
-    --card-radius: 1.1rem;
-    --card-surface: #f8fafc;
+    --card-radius: var(--pokemon-surface-radius, 1.1rem);
+    --card-surface: var(--pokemon-surface-color, #f8fafc);
     --card-height: 230px;
     --card-name-size: calc(var(--card-height) * 0.07);
     --card-id-size: calc(var(--card-height) * 0.05);
@@ -26,8 +26,12 @@
     border-radius: var(--card-radius);
     background:
         linear-gradient(var(--card-surface), var(--card-surface)) padding-box,
-        linear-gradient(135deg, #111111, #111111) border-box;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        linear-gradient(
+                135deg,
+                var(--pokemon-surface-border-color, #111111),
+                var(--pokemon-surface-border-color, #111111)
+        ) border-box;
+    box-shadow: var(--pokemon-surface-shadow, 0 10px 24px rgba(15, 23, 42, 0.08));
     transition:
         background 260ms ease,
         box-shadow 260ms ease,
