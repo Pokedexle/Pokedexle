@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild, signal} from '@angular/core';
-import { TypeComponent } from '../../../../shared/components/type/type.component';
+import { TypeComponent } from '../../../type/type.component';
 import {PokemonCardModel} from '../../models/pokemon-card.model';
 
 @Component({
