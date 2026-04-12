@@ -1,0 +1,70 @@
+:host {
+    display: block;
+
+    /* Shared layout tokens consumed by generation-header and pokemon-card-list */
+    --pokedex-section-side-margin: 0%;
+
+    /* Shared surface tokens for pokemon-card visual language */
+    --pokemon-surface-radius: 1.1rem;
+    --pokemon-surface-color: #f8fafc;
+    --pokemon-surface-border-color: #111111;
+    --pokemon-surface-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+@media (orientation: landscape) and (min-width: 950px) and (max-width: 1219.99px) { :host{--pokedex-section-side-margin: 5%;} }
+@media (orientation: landscape) and (min-width: 1220px) and (max-width: 1599.99px) { :host{--pokedex-section-side-margin: 10%;} }
+@media (orientation: landscape) and (min-width: 1500px) and (max-width: 1599.99px) { :host{--pokedex-section-side-margin: 11%;} }
+@media (orientation: landscape) and (min-width: 1600px) and (max-width: 1649.99px) { :host{--pokedex-section-side-margin: 12%;} }
+@media (orientation: landscape) and (min-width: 1650px) and (max-width: 1699.99px) { :host{--pokedex-section-side-margin: 13%;} }
+@media (orientation: landscape) and (min-width: 1700px) and (max-width: 1749.99px) { :host{--pokedex-section-side-margin: 14%;} }
+@media (orientation: landscape) and (min-width: 1750px) and (max-width: 1799.99px) { :host{--pokedex-section-side-margin: 15%;} }
+@media (orientation: landscape) and (min-width: 1800px) and (max-width: 1849.99px) { :host{--pokedex-section-side-margin: 16%;} }
+@media (orientation: landscape) and (min-width: 1850px) and (max-width: 1909.99px) { :host{--pokedex-section-side-margin: 17%;} }
+@media (orientation: landscape) and (min-width: 1910px) and (max-width: 2039.99px) { :host{--pokedex-section-side-margin: 18%;} }
+@media (orientation: landscape) and (min-width: 2040px) { :host{--pokedex-section-side-margin: 20%;} }
+
+.pokedex-page {
+    display: grid;
+    row-gap: 1.35rem;
+    padding-top: 1rem;
+}
+
+.pokedex-page__generation {
+    display: grid;
+    row-gap: 0.85rem;
+}
+
+.pokedex-page__status {
+    align-items: center;
+    display: grid;
+    min-height: 1.2rem;
+}
+
+.pokedex-page__status-text {
+    color: #334155;
+    font-size: 0.93rem;
+    line-height: 1.3;
+    margin: 0;
+    text-align: center;
+}
+
+.pokedex-page__status-text--error {
+    color: #b91c1c;
+}
+
+.pokedex-page__sentinel {
+    height: 1px;
+    pointer-events: none;
+    width: 100%;
+}
+
+@media (orientation: portrait) {
+    .pokedex-page {
+        padding-top: 0.8rem;
+        row-gap: 1.1rem;
+    }
+
+    .pokedex-page__generation {
+        row-gap: 0.7rem;
+    }
+}
